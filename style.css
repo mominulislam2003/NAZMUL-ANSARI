@@ -204,10 +204,23 @@ section {
     }
 
 }
+.toggle-btn {
+    display: none !important;
+}
+
+@media (max-width: 992px) {
+    .toggle-btn {
+        display: block !important;
+        position: fixed;
+        top: 20px;
+        left: 20px;
+        z-index: 9999;
+    }
+}
+
 
 @media (max-width: 992px) {
 
-    /* Sidebar is 45% wide on mobile, minimum 200px */
     .sidebar {
         width: max(200px, 45vw);
         transform: translateX(-100%);
@@ -218,7 +231,7 @@ section {
     }
 
     .toggle-btn {
-        display: block;
+        display: block; /* Mobile এ show */
     }
 
     .main-content {
@@ -226,10 +239,8 @@ section {
         padding: 40px 20px;
     }
 
-    /* Adjust button position when sidebar is open */
-    .sidebar.show+.main-content+.toggle-btn {
-        left: max(200px, 45vw) + 10px;
-        /* Moves button out of the way */
+    .sidebar.show + .main-content + .toggle-btn {
+        left: calc(max(200px, 45vw) + 10px);
     }
 
     .hero h1 {

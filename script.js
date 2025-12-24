@@ -1,9 +1,46 @@
 const sidebar = document.getElementById('sidebar');
 const mainContent = document.getElementById('mainContent');
 const toggleBtn = document.querySelector('.toggle-btn');
-const barsIcon = toggleBtn.querySelector('i');
+const barsIcon = toggleBtn ? toggleBtn.querySelector('i') : null;
 const navLinks = document.querySelectorAll('.nav-link');
 const sections = document.querySelectorAll('section');
+
+
+window.addEventListener('resize', () => {
+    if (!isMobileView()) {
+        // Desktop এ গেলে সব reset
+        sidebar.classList.remove('show');
+        mainContent.classList.remove('blurred');
+
+        if (toggleBtn) {
+            toggleBtn.style.left = '';
+        }
+
+        if (barsIcon) {
+            barsIcon.classList.remove('bi-box-arrow-left');
+            barsIcon.classList.add('bi-box-arrow-right');
+        }
+    }
+});
+function handleToggleVisibility() {
+    if (window.innerWidth > 992) {
+        // Desktop
+        toggleBtn.style.display = 'none';
+        toggleBtn.style.left = '';
+        sidebar.classList.remove('show');
+        mainContent.classList.remove('blurred');
+    } else {
+        // Mobile
+        toggleBtn.style.display = 'block';
+    }
+}
+
+// Page load
+handleToggleVisibility();
+
+// On resize
+window.addEventListener('resize', handleToggleVisibility);
+    
 
 // Function to check if the current view is mobile (screen width <= 992px)
 const isMobileView = () => window.innerWidth <= 992;
