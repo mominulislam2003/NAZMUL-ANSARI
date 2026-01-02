@@ -190,6 +190,9 @@ section {
     display: none;
 }
 
+.img-fluid {
+    width: 459px;
+}
 /* Responsive */
 @media (max-width: 800px) {
     #display {
@@ -249,3 +252,4 @@ section {
         line-height: 1.2;
     }
 }
+
